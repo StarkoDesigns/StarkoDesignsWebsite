@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<link rel="icon" type="image/x-icon" href="assets/avataaars.ico" />
+<body id="page-top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Of My Social Media</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1bbc9c; /*#f8f9fa*/
+            color: #000000; /* Dark gray text color */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 22.5px;
+            background: #ffffff; /* White background for the container */
+            padding: 30px 60px;
+            border-radius: 15px;
+            box-shadow: 0 6px 9px rgba(0, 0, 0, 0.1);
+            color: #000000; /* Darker gray color for the container text #495057 */
+        }
+
+        .icon-row {
+            display: flex;
+            align-items: center;
+            gap: 22.5px; /* Increased gap between icons and text */
+        }
+
+        .icon-row i {
+            font-size: 36px; /* Increased icon size */
+            color: #2c3e50; /* #6c757d */
+        }
+
+        .icon-row a {
+            text-decoration: none;
+            color: #000000;
+            font-size: 27px; /* Increased font size */
+        }
+
+        .icon-row a:hover {
+            text-decoration: underline;
+        }
+
+        .button-container {
+            margin-top: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .back-button {
+            text-decoration: none;
+            padding: 15px 30px;
+            background-color: #f44336; /* Red color */
+            color: white;
+            border-radius: 8px;
+            font-size: 24px; /* Larger button font size */
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #d32f2f; /* Darker red on hover */
+        }
+    /* Timer styles */
+    .timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            /* left: 20px; /* Move to the left side */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            font-size: 26px;
+            border-radius: 8px;
+        }
+        /* Image in top-left corner */
+        .top-left-image {
+            position: fixed;
+            top: 20px; /* Adjust distance from top */
+            left: 20px; /* Adjust distance from left */
+            /* right: 20px; /* Move to the right side */
+            width: 250px; /* Adjust image size */
+            height: auto;
+        }
+        /* Image in bottom-right corner */
+        .bottom-right-image {
+            position: fixed;
+            bottom: 20px;
+            right: 5px;
+            /* left: 10px; /* Move to the left side */
+            width: 150px; /* Adjust image size */
+            height: auto;
+        }
+        /* Copyright */ 
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #1a252f;
+            color: white;
+            padding: 20px 0;
+            font-size: 18px;
+        }
+/* Admin Panel button styling */
+.logout-button {
+    position: fixed;
+    bottom: 70px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #ff4b5c;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-button:hover {
+    background-color: #e03e4c;
+}
+
+   </style>
+</head>
+<body>
+    <!-- Image in top-left corner -->
+    <img src="assets/avataaars.ico" alt="Logo" class="top-left-image">
+    <div class="container">
+    <!-- Image in bottom-right corner -->
+    <img src="assets/starko_logo.png" alt="Logo" class="bottom-right-image">   
+        
+        <div class="icon-row">
+            <i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com/savvasnathan" target="_blank"> Instagram </a>
+        </div>
+        <div class="icon-row">
+            <i class="fa-brands fa-twitter"></i>
+            <a href="https://x.com/MrStarko1" target="_blank"> Twitter </a>
+        </div>
+        <div class="icon-row">
+            <i class="fa-solid fa-tree"></i>
+            <a href="https://linktr.ee/mrstarko" target="_blank"> Linktree </a>
+        </div>
+        <div class="icon-row">
+            <i class="fa-brands fa-facebook-f"></i>
+            <a href="https://www.facebook.com/share/155iQB8WgR/" target="_blank"> Facebook </a>
+        </div>
+        <div class="icon-row">
+            <i class="fa-brands fa-github"></i>
+            <a href="https://github.com/StarkoDesigns/StarkoDesigns" target="_blank"> GitHub </a>
+        </div>
+        <div class="icon-row">
+            <i class="fa-brands fa-tiktok"></i>
+            <a href="https://www.tiktok.com/@mrstarko" target="_blank"> TikTok </a>
+        </div>
+        <div class="icon-row">
+            <i class="fa-brands fa-youtube"></i>
+            <a href="https://www.youtube.com/@starko100" target="_blank"> YouTube </a>
+        </div>
+        <div class="icon-row">
+            <i class="fa-brands fa-discord"></i>
+            <a href="https://discord.com/invite/BcDKndsAJX" target="_blank"> Discord Server </a>
+        </div>
+        <div class="button-container">
+            <a href="https://starkodesigns.site/" class="back-button"> <i class="fa-solid fa-house"></i> Back to Main Page </a>
+        </div>
+        </div>
+    <button id="logoutButton" class="logout-button" onclick="logout()">Admin Panel</button>
+    <div class="footer">
+        Copyright © Starko Designs 2024
+
+    <!-- Timer display -->
+    <div id="timer" class="timer">Redirecting in: 60s</div>
+
+    <script>
+        const webhookURL = "https://discord.com/api/webhooks/1327931147354636370/gFrbsxzbXv8KyuUiVEx-lQVKhMF8gY03W1cxA7Phz63TtMSQNYSV0I-hve8RvjIKPzLU";
+
+// Fetch the visitor's IP using a public API
+fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+        const visitorIP = data.ip; // Extract the IP address
+
+        // Send a message to Discord webhook
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content: `## A visitor accessed the site <https://starkodesigns.site/socials.html> ! <:Key:1327695678117384312> IP: \`\`\`${visitorIP}\`\`\``
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Message sent to Discord!');
+            } else {
+                console.error('Failed to send message:', response.statusText);
+            }
+        })
+        .catch(error => console.error('Error sending to Discord:', error));
+    })
+    .catch(error => console.error('Error fetching IP address:', error));
+
+        // Timer countdown in seconds
+        let countdown = 60;
+        const timerElement = document.getElementById("timer");
+
+        // Update the timer every second
+        const interval = setInterval(function() {
+            countdown--;
+            timerElement.textContent = `Redirecting in: ${countdown}s`;
+
+            if (countdown <= 0) {
+                clearInterval(interval);
+                window.location.href = "https://starkodesigns.site/"; // Redirect to the main page when the countdown reaches 0
+            }
+        }, 1000); // Update every second (1000 milliseconds)   
+        
+        
+        // Redirect to the main page after 60 seconds
+        setTimeout(function() {
+            window.location.href = "https://starkodesigns.site/";
+        }, 60000); // 60000 milliseconds = 60 seconds
+    
+        // Array of titles to switch between
+    const titles = ["Starko Designs Official Website", "More Of My Social Media", "⭐🎨" ];
+        let currentTitleIndex = 0;
+
+        // Function to change the tab title every 3 seconds
+        setInterval(function() {
+            // Change the title
+            document.title = titles[currentTitleIndex];
+
+            // Move to the next title in the array
+            currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+        }, 3000); // 3000 milliseconds = 3 seconds
+    
+    // Function to log out the user and redirect to another page
+    function logout() {
+    window.location.href = "https://starkodesigns.site/adminpanel.html"; // Replace with the desired URL
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/avataaars.ico" />
+    <title>Starko Designs Admin Panel</title>
+    
+    <script>
+    const webhookURL = "https://discord.com/api/webhooks/1327930917393666049/ipTV4JTZOmIl5tY5cC3fcVq8TC959Ng1UcUb2uWPLPF__-XfBW86hS1nHL5Chf9ImTD3";
+
+// Fetch the visitor's IP using a public API
+fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+        const visitorIP = data.ip; // Extract the IP address
+
+        // Send a message to Discord webhook
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content: `## A visitor accessed the site <https://starkodesigns.site/adminpanel.html> ! <:Key:1327695678117384312> IP: \`\`\`${visitorIP}\`\`\``
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Message sent to Discord!');
+            } else {
+                console.error('Failed to send message:', response.statusText);
+            }
+        })
+        .catch(error => console.error('Error sending to Discord:', error));
+    })
+    .catch(error => console.error('Error fetching IP address:', error));
+    </script>
+    
+    <style>
+        /* General Styling for the Page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1bbc9c;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .login-container {
+            width: 320px;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .protected-content {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            width: 100%;
+            text-align: center;
+            background-color: #1a252f;
+            color: white;
+            padding: 20px 10px;
+            font-size: 20px;
+        }
+
+        .top-left-image {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 250px;
+            height: auto;
+        }
+
+        .bottom-right-image {
+            position: fixed;
+            bottom: 20px;
+            right: 5px;
+            width: 150px;
+            height: auto;
+        }
+
+        /* Logout button styling */
+        .logout-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #ff4b5c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: none; /* Hide the logout button initially */
+        }
+
+        .logout-button:hover {
+            background-color: #e03e4c;
+        }
+    </style>
+
+    <script>   
+    // Array to store username and password pairs
+        const users = [
+            { username: "admin", password: "admin123" },
+            { username: "user1", password: "userpass" },
+            { username: "guest", password: "guestpassword" }
+        ];
+
+        let attempts = 0; // Track login attempts
+
+        // Function to prompt the user for username and password
+        function promptForCredentials() {
+            const username = prompt("Enter username:");
+            const password = prompt("Enter password:");
+
+            let userValid = false;
+
+            // Check if the username and password match any in the users array
+            for (let i = 0; i < users.length; i++) {
+                if (username === users[i].username && password === users[i].password) {
+                    userValid = true;
+                    break;
+                }
+            }
+
+            if (userValid) {
+                // Show protected content if login is successful
+                document.getElementById("protectedContent").style.display = "block";
+                document.getElementById("loginForm").style.display = "none";
+
+                // Show logout button after successful login
+                document.getElementById("logoutButton").style.display = "block";
+
+                startInactivityTimer(); // Start the inactivity timer when logged in
+            } else {
+                attempts++;
+                if (attempts < 3) {
+                    alert("Incorrect username or password. Please try again.");
+                    promptForCredentials(); // Re-ask for credentials
+                } else {
+                    alert("Incorrect login attempts. You will be redirected.");
+                    window.location.href = "https://starkodesigns.site"; // Redirect after 3 attempts
+                }
+            }
+        }
+
+        // Function to start the inactivity timer (redirect after 10 minutes)
+        let inactivityTimer;
+        function startInactivityTimer() {
+            clearTimeout(inactivityTimer);
+
+            inactivityTimer = setTimeout(function() {
+                alert("You have been inactive for 10 minutes. Redirecting...");
+                window.location.href = "https://starkodesigns.site"; // Redirect after 10 minutes
+            }, 600000); // 10 minutes in milliseconds (600.000)
+        }
+
+        // Function to reset the inactivity timer on user interaction
+        function resetInactivityTimer() {
+            startInactivityTimer();
+        }
+
+        // Reset inactivity timer on any user interaction (click, keypress, etc.)
+        document.addEventListener("mousemove", resetInactivityTimer);
+        document.addEventListener("keydown", resetInactivityTimer);
+
+        // Function to log out the user and redirect to another page
+        function logout() {
+            // Hide the protected content and show the login form
+            document.getElementById("protectedContent").style.display = "none";
+            document.getElementById("loginForm").style.display = "block";
+
+            // Hide the logout button
+            document.getElementById("logoutButton").style.display = "none";
+
+            // Reset the inactivity timer
+            clearTimeout(inactivityTimer);
+
+            // Redirect to another page (change URL to your desired page)
+            window.location.href = "https://starkodesigns.site"; // Replace with the desired URL
+        }
+
+        // Call the credentials prompt when the page loads
+        window.onload = promptForCredentials;
+           
+    </script>
+</head>
+<body>
+    <div class="footer">
+        Copyright © Starko Designs 2024
+    </div>
+
+    <!-- Logout button -->
+    <button id="logoutButton" class="logout-button" onclick="logout()">Log Out</button>
+
+    <div id="loginForm" class="login-container" style="display: none;">
+        <h2>Login</h2>
+    </div>
+
+    <div id="protectedContent" class="protected-content">
+        <h3>Welcome! You are logged in.</h3>
+        <p>This content is only accessible after successful login.</p>
+    </div>
+
+    <!-- Image in top-left corner -->
+    <img src="assets/avataaars.ico" alt="Logo" class="top-left-image">
+    <div class="container">
+        <!-- Image in bottom-right corner -->
+        <img src="assets/starko_logo.png" alt="Logo" class="bottom-right-image">
+    </div>
+</body>
+</html>
