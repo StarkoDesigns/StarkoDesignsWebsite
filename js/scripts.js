@@ -102,10 +102,10 @@ const PORT = 3000;
 
 // Webhook URLs for different pages
 const webhooks = {
-    home: "https://discord.com/api/webhooks/1327931248584429628/B2c7b-Wvz1BHLzFhyz58Ffj3N6vdcMIyKvQW4KnvXRlBUgdW3HOYKUUyZlkC9J9wGXsQ", // main
-    about: "https://discord.com/api/webhooks/1327931147354636370/gFrbsxzbXv8KyuUiVEx-lQVKhMF8gY03W1cxA7Phz63TtMSQNYSV0I-hve8RvjIKPzLU", // socials
-    contact: "https://discord.com/api/webhooks/1327931026034528287/YOKpYyC-POC3I4gKdsYACfeenmmwqvEcJpcC7NgppYAsIggqNxOn69U_g7MFNJqFxWSj", // socialmedia
-    services: "https://discord.com/api/webhooks/1327930917393666049/ipTV4JTZOmIl5tY5cC3fcVq8TC959Ng1UcUb2uWPLPF__-XfBW86hS1nHL5Chf9ImTD3", // adminpanel
+    main: "https://discord.com/api/webhooks/1327931248584429628/B2c7b-Wvz1BHLzFhyz58Ffj3N6vdcMIyKvQW4KnvXRlBUgdW3HOYKUUyZlkC9J9wGXsQ", // main
+    socials: "https://discord.com/api/webhooks/1327931147354636370/gFrbsxzbXv8KyuUiVEx-lQVKhMF8gY03W1cxA7Phz63TtMSQNYSV0I-hve8RvjIKPzLU", // socials
+    socialmedia: "https://discord.com/api/webhooks/1327931026034528287/YOKpYyC-POC3I4gKdsYACfeenmmwqvEcJpcC7NgppYAsIggqNxOn69U_g7MFNJqFxWSj", // socialmedia
+    adminpanel: "https://discord.com/api/webhooks/1327930917393666049/ipTV4JTZOmIl5tY5cC3fcVq8TC959Ng1UcUb2uWPLPF__-XfBW86hS1nHL5Chf9ImTD3", // adminpanel
     all: "https://discord.com/api/webhooks/1329918131078168729/g_DgUWkxrNFkWk7IUuV3WGP5QgpxM3pHINmcShI0iQL49C5occLFqaEJfbwgFcEEqis5" // allposters
 };
 
@@ -115,31 +115,31 @@ app.use(express.json());
 // Serve static files (like index.html, about.html, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Route for home page
+// Route for main page
 app.get('/', (req, res) => {
-    sendVisitToWebhook(req.ip, 'home');
+    sendVisitToWebhook(req.ip, 'main');
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Route for about page
+// Route for socials page
 app.get('/about.html', (req, res) => {
-    sendVisitToWebhook(req.ip, 'about');
+    sendVisitToWebhook(req.ip, 'socials');
     res.sendFile(path.join(__dirname, 'public', 'socials.html'));
 });
 
-// Route for contact page
+// Route for socialmedia page
 app.get('/contact.html', (req, res) => {
-    sendVisitToWebhook(req.ip, 'contact');
+    sendVisitToWebhook(req.ip, 'socialmedia');
     res.sendFile(path.join(__dirname, 'public', 'socialmedia.html'));
 });
 
-// Route for services page
+// Route for adminpanel page
 app.get('/services.html', (req, res) => {
-    sendVisitToWebhook(req.ip, 'services');
+    sendVisitToWebhook(req.ip, 'adminpanel');
     res.sendFile(path.join(__dirname, 'public', 'adminpanel.html'));
 });
 
-// Route for all page
+// Route for allposters page
 app.get('/services.html', (req, res) => {
     sendVisitToWebhook(req.ip, 'all');
     res.sendFile(path.join(__dirname, 'public', 'allposters.html'));
