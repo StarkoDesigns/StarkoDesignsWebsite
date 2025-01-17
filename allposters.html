@@ -1,6 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <script>   
+        // Array to store username and password pairs
+            const users = [
+                { username: "admin", password: "admin123" },
+                { username: "nathan", password: "nathan166" },
+                { username: "guest", password: "guestpassword" }
+            ];
+    
+            let attempts = 0; // Track login attempts
+    
+            // Function to prompt the user for username and password
+            function promptForCredentials() {
+                const username = prompt("Enter username:");
+                const password = prompt("Enter password:");
+    
+                let userValid = false;
+    
+                // Check if the username and password match any in the users array
+                for (let i = 0; i < users.length; i++) {
+                    if (username === users[i].username && password === users[i].password) {
+                        userValid = true;
+                        break;
+                    }
+                }
+    
+                if (userValid) {
+                    // Show protected content if login is successful
+                    document.getElementById("protectedContent").style.display = "block";
+                    document.getElementById("loginForm").style.display = "none";
+    
+                    // Show logout button after successful login
+                    document.getElementById("logoutButton").style.display = "block";
+    
+                    startInactivityTimer(); // Start the inactivity timer when logged in
+                } else {
+                    attempts++;
+                    if (attempts < 3) {
+                        alert("Incorrect username or password. Please try again.");
+                        promptForCredentials(); // Re-ask for credentials
+                    } else {
+                        alert("Incorrect login attempts. You will be redirected.");
+                        window.location.href = "https://starkodesigns.site"; // Redirect after 3 attempts
+                    }
+                }
+            }
+    
+            // Function to start the inactivity timer (redirect after 10 minutes)
+            let inactivityTimer;
+            function startInactivityTimer() {
+                clearTimeout(inactivityTimer);
+    
+                inactivityTimer = setTimeout(function() {
+                    alert("You have been inactive for 10 minutes. Redirecting...");
+                    window.location.href = "https://starkodesigns.site"; // Redirect after 10 minutes
+                }, 600000); // 10 minutes in milliseconds (600.000)
+            }
+    
+            // Function to reset the inactivity timer on user interaction
+            function resetInactivityTimer() {
+                startInactivityTimer();
+            }
+    
+            // Reset inactivity timer on any user interaction (click, keypress, etc.)
+            document.addEventListener("mousemove", resetInactivityTimer);
+            document.addEventListener("keydown", resetInactivityTimer);
+    
+            // Function to log out the user and redirect to another page
+            function logout() {
+                // Hide the protected content and show the login form
+                document.getElementById("protectedContent").style.display = "none";
+                document.getElementById("loginForm").style.display = "block";
+    
+                // Hide the logout button
+                document.getElementById("logoutButton").style.display = "none";
+    
+                // Reset the inactivity timer
+                clearTimeout(inactivityTimer);
+    
+                // Redirect to another page (change URL to your desired page)
+                window.location.href = "https://starkodesigns.site"; // Replace with the desired URL
+            }
+    
+            // Call the credentials prompt when the page loads
+            window.onload = promptForCredentials;
+               
+        </script>
+      <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
