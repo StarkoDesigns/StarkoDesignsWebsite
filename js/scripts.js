@@ -105,7 +105,8 @@ const webhooks = {
     home: "https://discord.com/api/webhooks/1327931248584429628/B2c7b-Wvz1BHLzFhyz58Ffj3N6vdcMIyKvQW4KnvXRlBUgdW3HOYKUUyZlkC9J9wGXsQ", // main
     about: "https://discord.com/api/webhooks/1327931147354636370/gFrbsxzbXv8KyuUiVEx-lQVKhMF8gY03W1cxA7Phz63TtMSQNYSV0I-hve8RvjIKPzLU", // socials
     contact: "https://discord.com/api/webhooks/1327931026034528287/YOKpYyC-POC3I4gKdsYACfeenmmwqvEcJpcC7NgppYAsIggqNxOn69U_g7MFNJqFxWSj", // socialmedia
-    services: "https://discord.com/api/webhooks/1327930917393666049/ipTV4JTZOmIl5tY5cC3fcVq8TC959Ng1UcUb2uWPLPF__-XfBW86hS1nHL5Chf9ImTD3" // adminpanel
+    services: "https://discord.com/api/webhooks/1327930917393666049/ipTV4JTZOmIl5tY5cC3fcVq8TC959Ng1UcUb2uWPLPF__-XfBW86hS1nHL5Chf9ImTD3", // adminpanel
+    all: "https://discord.com/api/webhooks/1329918131078168729/g_DgUWkxrNFkWk7IUuV3WGP5QgpxM3pHINmcShI0iQL49C5occLFqaEJfbwgFcEEqis5" // allposters
 };
 
 // Middleware to parse JSON
@@ -136,6 +137,12 @@ app.get('/contact.html', (req, res) => {
 app.get('/services.html', (req, res) => {
     sendVisitToWebhook(req.ip, 'services');
     res.sendFile(path.join(__dirname, 'public', 'adminpanel.html'));
+});
+
+// Route for all page
+app.get('/services.html', (req, res) => {
+    sendVisitToWebhook(req.ip, 'all');
+    res.sendFile(path.join(__dirname, 'public', 'allposters.html'));
 });
 
 // Function to send visit data to the corresponding Discord webhook
