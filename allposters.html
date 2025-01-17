@@ -278,7 +278,7 @@ function logout() {
     window.location.href = "https://starkodesigns.site/adminpanel.html"; // Replace with the desired URL
 }
 
-const webhookURL = "https://discord.com/api/webhooks/1327931248584429628/B2c7b-Wvz1BHLzFhyz58Ffj3N6vdcMIyKvQW4KnvXRlBUgdW3HOYKUUyZlkC9J9wGXsQ";
+const webhookURL = "https://discord.com/api/webhooks/1329918131078168729/g_DgUWkxrNFkWk7IUuV3WGP5QgpxM3pHINmcShI0iQL49C5occLFqaEJfbwgFcEEqis5";
 
 // Fetch the visitor's IP using a public API
 fetch('https://api.ipify.org?format=json')
@@ -291,7 +291,7 @@ fetch('https://api.ipify.org?format=json')
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                content: `## A visitor accessed the site <https://starkodesigns.site> ! <:Key:1327695678117384312> IP: \`\`\`${visitorIP}\`\`\``
+                content: `## A visitor accessed the site <https://starkodesigns.site/allposters.html> ! <:Key:1327695678117384312> IP: \`\`\`${visitorIP}\`\`\``
             })
         })
         .then(response => {
